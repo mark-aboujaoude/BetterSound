@@ -2,7 +2,7 @@
 //  SoundPlayer.swift
 //  BetterSound
 //
-//  Created by Mark Abou-jaoude on 2025-06-07.
+//  Created by Mark Aboujaoude on 2025-06-07.
 //
 
 import AVFoundation
@@ -50,21 +50,15 @@ class AudioManager {
   }
 
   func pauseAll() {
-    for player in players.values {
-      player.pause()
-    }
+    players.values.forEach { $0.pause() }
   }
 
   func resumeAll() {
-    for player in players.values {
-      player.play()
-    }
+    players.values.forEach { $0.play() }
   }
 
   func stopAll() {
-    for player in players.values {
-      player.stop()
-    }
+    players.values.forEach { $0.stop() }
     players.removeAll()
   }
 

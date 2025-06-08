@@ -2,7 +2,7 @@
 //  Player.swift
 //  BetterSound
 //
-//  Created by Mark Abou-jaoude on 2025-06-06.
+//  Created by Mark Aboujaoude on 2025-06-06.
 //
 
 import Foundation

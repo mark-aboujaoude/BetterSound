@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  BetterSound
 //
-//  Created by Mark Abou-jaoude on 2025-06-06.
+//  Created by Mark Aboujaoude on 2025-06-06.
 //
 
 import ComposableArchitecture
@@ -21,21 +21,17 @@ struct ContentView: View {
 
       Text("Welcome to **BetterSound**")
 
-      Button("Proceed to demo") {
-        showDemo = true
-      }
-      .padding()
-      .background(Color.blue)
-      .foregroundColor(.white)
-      .cornerRadius(30)
+      Button("Proceed to demo") { showDemo = true }
+        .padding()
+        .background(Color.blue)
+        .foregroundColor(.white)
+        .cornerRadius(30)
     }
     .padding()
     .scaleEffect(hasAppeared ? 1 : 0.6)
     .opacity(hasAppeared ? 1 : 0)
     .animation(.spring(response: 0.5, dampingFraction: 0.6), value: hasAppeared)
-    .onAppear {
-      hasAppeared = true
-    }
+    .onFirstAppear { hasAppeared = true }
     .fullScreenCover(isPresented: $showDemo) {
       SoundsFeatureLayout(
         store: StoreOf<SoundsFeature>(initialState: .init()) {

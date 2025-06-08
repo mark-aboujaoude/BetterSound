@@ -2,7 +2,7 @@
 //  SelectableSoundView.swift
 //  BetterSound
 //
-//  Created by Mark Abou-jaoude on 2025-06-08.
+//  Created by Mark Aboujaoude on 2025-06-08.
 //
 
 import SwiftUI

@@ -20,7 +20,7 @@ class Sound: Decodable {
   var audioName: String
   var selectedImageName: String
   var unselectedImageName: String
-  // add support for tags - check filtering client
+  // Tag IDs - Not supported for demo
 
   init(
     id: Int,

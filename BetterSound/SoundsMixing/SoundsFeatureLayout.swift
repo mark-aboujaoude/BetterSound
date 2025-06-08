@@ -14,26 +14,26 @@ struct SoundsFeatureLayout: View {
 
   var body: some View {
     ZStack {
-//      Image("Background")
-//        .resizable()
-//        .scaledToFill()
-//        .ignoresSafeArea()
-      // Using Image("Background") directly removes padding
-      Color.clear.background(
-        Image("Background")
+      ScrollView {
+        Text("Sounds")
+          .font(.title)
+          .fontWeight(.bold)
+          .foregroundColor(.white)
+
+        SoundsGridView(store: store)
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+          .padding(.horizontal)
+          .onFirstAppear {
+            store.send(.onFirstAppear)
+          }
+          .alert($store.scope(state: \.alert, action: \.alert))
+      }
+      .background(
+        Image("Background2")
           .resizable()
           .scaledToFill()
           .ignoresSafeArea()
       )
-
-      SoundsGridView(store: store)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.horizontal)
-        .onFirstAppear {
-          store.send(.onFirstAppear)
-        }
-        .alert($store.scope(state: \.alert, action: \.alert))
-
       VStack {
         Spacer()
         if !store.selectedSounds.isEmpty {

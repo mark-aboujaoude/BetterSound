@@ -9,26 +9,18 @@ import Foundation
 
 
 public class Player {
-
-  /// The current playback state of the player, published for observers.
-  @Published
-  public private(set) var state: State = .stopped
-
-  /// The current active stream. `nil` if no stream is active.
-//  @Published
-//  public private(set) var stream: Stream?
+  /**
+   We can add properties here depending
+   on how we want the player to behave.
+   */
 }
 
 extension Player {
   public enum State: Equatable, Hashable  {
-    case loading
     case playing
     case paused
     case stopped
-//    case failed(Error)
+//    case loading - Not used for demo purposes
+//    case failed(Error) - Not used for demo purposes
   }
-
-//  func toggle() {
-//    self = (self == .playing) ? .paused : .playing
-//  }
 }

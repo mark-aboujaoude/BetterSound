@@ -22,7 +22,7 @@ struct SelectableSoundView: View {
         Image(imageName)
           .resizable()
           .scaledToFill()
-          .frame(height: 100)
+          .frame(height: 80)
           .frame(maxWidth: .infinity)
           .clipped()
           .cornerRadius(12)

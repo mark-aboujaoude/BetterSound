@@ -17,7 +17,7 @@ class SelectedSoundDataManager {
       modelContainer = try ModelContainer(for: Sound.self)
       context = ModelContext(modelContainer)
     } catch {
-      // remove fatal error
+      // fatalError is only for demo purposes
       fatalError("Failed to set up ModelContainer: \(error)")
     }
   }

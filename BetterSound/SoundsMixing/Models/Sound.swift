@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 /**
- `@Model` onlu supports classes - not structs
+ `@Model` only supports classes - not structs
  `@Model` requires an initializer be provided for `Sound`
   This requires the decoder init as a result.
  */

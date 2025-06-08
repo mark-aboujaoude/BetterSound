@@ -6,12 +6,9 @@
 //
 
 import AVFoundation
-//import Combine
 import ComposableArchitecture
-//import ConcurrencyExtras
 import Foundation
 import IdentifiedCollections
-//import MediaPlayer
 import SwiftData
 
 @Reducer
@@ -81,6 +78,18 @@ struct SoundsFeature {
         return .none
 
       case let .add(sound):
+        guard state.selectedSounds.count < 3 else {
+          state.alert = AlertState {
+            TextState("Hi There!")
+          } actions: {
+            ButtonState(role: .cancel) {
+              TextState("OK")
+            }
+          } message: {
+            TextState("Become a premium member to use more than 3.")
+          }
+          return .none
+        }
         selectedSoundManager.store(sound: sound)
         state.selectedSounds = selectedSoundManager.fetchSounds()
         state.playerState = .playing

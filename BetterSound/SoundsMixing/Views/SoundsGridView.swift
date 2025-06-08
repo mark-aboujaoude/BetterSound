@@ -48,7 +48,7 @@ struct SelectableSoundView: View {
   @State private var timer: Timer?
 
   var body: some View {
-    VStack(spacing: 8) {
+    VStack(spacing: 0) {
       Button(action: onTap) {
         Image(imageName)
           .resizable()
@@ -74,6 +74,7 @@ struct SelectableSoundView: View {
 
       Text(sound.name)
         .font(.caption)
+        .foregroundColor(.white)
         .multilineTextAlignment(.center)
     }
   }
@@ -104,12 +105,4 @@ struct SelectableSoundView: View {
       rotationAngle = 0
     }
   }
-  //  private func startSwinging() {
-//    withAnimation(
-//      .easeInOut(duration: 0.5)
-//      .repeatForever(autoreverses: true)
-//    ) {
-//      rotationAngle = 5
-//    }
-//  }
 }

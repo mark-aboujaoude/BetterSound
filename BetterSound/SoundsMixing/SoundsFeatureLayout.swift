@@ -10,17 +10,29 @@ import ComposableArchitecture
 import SwiftUI
 
 struct SoundsFeatureLayout: View {
-  let store: StoreOf<SoundsFeature>
+  @Bindable var store: StoreOf<SoundsFeature>
 
   var body: some View {
     ZStack {
+//      Image("Background")
+//        .resizable()
+//        .scaledToFill()
+//        .ignoresSafeArea()
+      // Using Image("Background") directly removes padding
+      Color.clear.background(
+        Image("Background")
+          .resizable()
+          .scaledToFill()
+          .ignoresSafeArea()
+      )
+
       SoundsGridView(store: store)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.red)
+        .padding(.horizontal)
         .onFirstAppear {
           store.send(.onFirstAppear)
         }
-//      .alert($store.scope(state: \.alert, action: \.alert))
+        .alert($store.scope(state: \.alert, action: \.alert))
 
       VStack {
         Spacer()
@@ -31,21 +43,9 @@ struct SoundsFeatureLayout: View {
             onTapPlayPauseAction: { store.send(.playPauseButtonTapped) }
           )
           .padding(.horizontal)
+          .padding(.bottom)
         }
       }
-    }
-//    contentView
-//      .frame(maxWidth: .infinity, maxHeight: .infinity)
-//      .background(.black)
-//      .onFirstAppear {
-//        store.send(.onFirstAppear)
-//      }
-//      .alert($store.scope(state: \.alert, action: \.alert))
-  }
-
-  private var contentView: some View {
-    VStack {
-      Text("Demo time")
     }
   }
 }

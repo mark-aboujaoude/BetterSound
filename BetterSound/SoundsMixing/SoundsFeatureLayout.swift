@@ -24,11 +24,14 @@ struct SoundsFeatureLayout: View {
 
       VStack {
         Spacer()
-        SoundsPlayerView(
-          playerState: store.playerState,
-          onTapPlayPauseAction: { store.send(.playPauseButtonTapped) }
-        )
-        .padding(.horizontal)
+        if !store.selectedSounds.isEmpty {
+          SoundsPlayerView(
+            playerState: store.playerState,
+            selectedSounds: store.selectedSounds,
+            onTapPlayPauseAction: { store.send(.playPauseButtonTapped) }
+          )
+          .padding(.horizontal)
+        }
       }
     }
 //    contentView

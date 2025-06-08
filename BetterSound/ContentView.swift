@@ -11,7 +11,6 @@ import SwiftUI
 struct ContentView: View {
   @State private var hasAppeared = false
   @State private var showDemo = false
-//  let store: StoreOf<SoundsFeature>
 
   var body: some View {
     VStack(spacing: 20) {
@@ -19,7 +18,9 @@ struct ContentView: View {
         .resizable()
         .frame(width: 100, height: 100)
         .foregroundStyle(.tint)
+
       Text("Welcome to **BetterSound**")
+
       Button("Proceed to demo") {
         showDemo = true
       }
@@ -38,7 +39,11 @@ struct ContentView: View {
     .fullScreenCover(isPresented: $showDemo) {
       SoundsFeatureLayout(
         store: StoreOf<SoundsFeature>(initialState: .init()) {
-          SoundsFeature(context: .init(retryButtonTitle: "", errorMessage: ""))
+          SoundsFeature(
+            context: .init(retryButtonTitle: "", errorMessage: ""),
+            selectedSoundManager: SelectedSoundDataManager(),
+            audioManager: AudioManager()
+          )
         }
       )
 //      layout.store = StoreOf<SoundsFeature>(initialState: .init()) {
@@ -46,12 +51,6 @@ struct ContentView: View {
 //      }
     }
   }
-}
-
-struct DetailView: View {
-    var body: some View {
-        Text("This is the detail view")
-    }
 }
 
 #Preview {

@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "name": "Birds",
+    "audioName": "birds",
+    "selectedImageName": "Birds-Selected",
+    "unselectedImageName": "Birds-Normal"
+  },
+  {
+    "id": 2,
+    "name": "Flute",
+    "audioName": "flute",
+    "selectedImageName": "Flute-Selected",
+    "unselectedImageName": "Flute-Normal"
+  },
+  {
+    "id": 3,
+    "name": "Piano",
+    "audioName": "piano",
+    "selectedImageName": "Piano-Selected",
+    "unselectedImageName": "Piano-Normal"
+  },
+  {
+    "id": 4,
+    "name": "Lounge",
+    "audioName": "lounge",
+    "selectedImageName": "Lounge-Selected",
+    "unselectedImageName": "Lounge-Normal"
+  },
+  {
+    "id": 5,
+    "name": "MusicBox",
+    "audioName": "musicbox",
+    "selectedImageName": "MusicBox-Selected",
+    "unselectedImageName": "MusicBox-Normal"
+  },
+  {
+    "id": 6,
+    "name": "Ocean",
+    "audioName": "ocean",
+    "selectedImageName": "Ocean-Selected",
+    "unselectedImageName": "Ocean-Normal"
+  },
+  {
+    "id": 7,
+    "name": "Orchestral",
+    "audioName": "orchestral",
+    "selectedImageName": "Orchestral-Selected",
+    "unselectedImageName": "Orchestral-Normal"
+  },
+  {
+    "id": 8,
+    "name": "Rain",
+    "audioName": "rain",
+    "selectedImageName": "Rain-Selected",
+    "unselectedImageName": "Rain-Normal"
+  },
+  {
+    "id": 9,
+    "name": "Wind",
+    "audioName": "wind",
+    "selectedImageName": "Wind-Selected",
+    "unselectedImageName": "Wind-Normal"
+  }
+]

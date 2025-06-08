@@ -5,17 +5,15 @@
 //  Created by Mark Abou-jaoude on 2025-06-06.
 //
 
-import AVFoundation
 import ComposableArchitecture
 import Foundation
-import IdentifiedCollections
-import SwiftData
 
 @Reducer
 struct SoundsFeature {
   struct Context {
-    var retryButtonTitle: String
-    var errorMessage: String
+    var alertTitle: String
+    var alertMessage: String
+    var alertButton: String
   }
 
   @ObservableState
@@ -23,7 +21,6 @@ struct SoundsFeature {
     var selectedSounds: Set<Sound> = []
     var sounds: [Sound] = []
     var playerState: Player.State = .stopped
-    var mode: Mode = .loading
 
     @Presents var alert: AlertState<Action.Alert>?
   }
@@ -31,16 +28,15 @@ struct SoundsFeature {
   enum Action: Equatable {
     // User Actions
     case onFirstAppear
-    case retryButtonTapped
     case add(Sound)
     case remove(Sound)
     case playPauseButtonTapped
+    case clearButtonTapped
     case alert(PresentationAction<Alert>)
 
     // Internal Actions
-//    case receivedPlayerState(Player.State)
-    case connectionFailed
-    case connectionSucceed([Sound])
+//    case connectionFailed - Not used for demo
+//    case connectionSucceed([Sound]) - Not used for demo
 
     @CasePathable
     enum Alert: Equatable, Hashable {}
@@ -49,8 +45,6 @@ struct SoundsFeature {
   private let context: Context
   private let selectedSoundManager: SelectedSoundDataManager
   private var audioManager: AudioManager
-
-  private let featureId = UUID()
 
   var body: some ReducerOf<Self> {
     Reduce { state, action in
@@ -61,32 +55,18 @@ struct SoundsFeature {
         for sound in state.selectedSounds {
           audioManager.createPlayer(for: sound.audioName)
         }
-//        return connectAndListen()
-        return .none
-
-        // probably don't need this
-      case .connectionSucceed(let sounds):
-        state.mode = .displaySounds
-        return .none
-
-      case .connectionFailed:
-        state.mode = .retry(message: context.errorMessage, buttonTitle: context.retryButtonTitle)
-        return .none
-
-      case .retryButtonTapped:
-//        return connect()
         return .none
 
       case let .add(sound):
         guard state.selectedSounds.count < 3 else {
           state.alert = AlertState {
-            TextState("Hi There!")
+            TextState(context.alertTitle)
           } actions: {
             ButtonState(role: .cancel) {
-              TextState("OK")
+              TextState(context.alertButton)
             }
           } message: {
-            TextState("Become a premium member to use more than 3.")
+            TextState(context.alertMessage)
           }
           return .none
         }
@@ -95,7 +75,6 @@ struct SoundsFeature {
         state.playerState = .playing
         audioManager.createPlayer(for: sound.audioName)
         audioManager.resumeAll()
-        // need to cap it at 3 and show an alert
         return .none
 
       case let .remove(sound):
@@ -115,6 +94,13 @@ struct SoundsFeature {
         }
         return .none
 
+      case .clearButtonTapped:
+        selectedSoundManager.removeAll()
+        state.selectedSounds = selectedSoundManager.fetchSounds()
+        audioManager.stopAll()
+        state.playerState = .stopped
+        return .none
+
       case .alert:
         state.alert = nil
         return .none
@@ -130,14 +116,6 @@ struct SoundsFeature {
     self.context = context
     self.selectedSoundManager = selectedSoundManager
     self.audioManager = audioManager
-  }
-}
-
-extension SoundsFeature {
-  enum Mode: Equatable, Hashable {
-    case loading
-    case retry(message: String, buttonTitle: String)
-    case displaySounds
   }
 }
 

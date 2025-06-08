@@ -9,11 +9,12 @@ import Foundation
 import SwiftData
 
 /**
- Used a class instead of struct to support the @Model macro
+ `@Model` onlu supports classes - not structs
+ `@Model` requires an initializer be provided for `Sound`
+  This requires the decoder init as a result.
  */
-
 @Model
-class Sound: Equatable, Hashable, Decodable {
+class Sound: Decodable {
   @Attribute(.unique) var id: Int
   var name: String
   var audioName: String
@@ -53,7 +54,6 @@ class Sound: Equatable, Hashable, Decodable {
     )
   }
 
-  // CodingKeys is needed to match JSON keys with property names
   enum CodingKeys: String, CodingKey {
     case id
     case name
@@ -63,7 +63,7 @@ class Sound: Equatable, Hashable, Decodable {
   }
 }
 
-extension Sound {
+extension Sound: Equatable, Hashable {
   static func == (lhs: Sound, rhs: Sound) -> Bool {
     lhs.id == rhs.id
   }

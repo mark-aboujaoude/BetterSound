@@ -40,7 +40,8 @@ struct SoundsFeatureLayout: View {
           SoundsPlayerView(
             playerState: store.playerState,
             selectedSounds: store.selectedSounds,
-            onTapPlayPauseAction: { store.send(.playPauseButtonTapped) }
+            onTapPlayPauseAction: { store.send(.playPauseButtonTapped) },
+            onTapClear: { store.send(.clearButtonTapped) }
           )
           .padding(.horizontal)
           .padding(.bottom)

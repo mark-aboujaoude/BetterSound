@@ -40,15 +40,16 @@ struct ContentView: View {
       SoundsFeatureLayout(
         store: StoreOf<SoundsFeature>(initialState: .init()) {
           SoundsFeature(
-            context: .init(retryButtonTitle: "", errorMessage: ""),
+            context: .init(
+              alertTitle: "Hi There!",
+              alertMessage: "Become a premium member to use more than 3.",
+              alertButton: "OK"
+            ),
             selectedSoundManager: SelectedSoundDataManager(),
             audioManager: AudioManager()
           )
         }
       )
-//      layout.store = StoreOf<SoundsFeature>(initialState: .init()) {
-//        SoundsFeature(context: .init(retryButtonTitle: "", errorMessage: ""))
-//      }
     }
   }
 }

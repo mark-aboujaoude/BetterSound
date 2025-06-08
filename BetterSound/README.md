@@ -15,3 +15,9 @@ TCA’s unidirectional data flow and clear separation of concerns made it easier
 - ✅ The app should save its state, preserving the current sound selection so the user can reopen the app with their last selection intact.
 - ✅ The user should be able to play a maximum of three sounds simultaneously. If the user attempts to select more, a warning message should be displayed.
 - ✅ Bonus: Animate the icons of playing sounds.
+
+
+## WARNING
+
+Macro target 'DependenciesMacrosPlugin' must be enabled before building the app.
+

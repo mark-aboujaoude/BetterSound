@@ -35,8 +35,7 @@ struct SoundsFeature {
     case alert(PresentationAction<Alert>)
 
     // Internal Actions
-//    case connectionFailed - Not used for demo
-//    case connectionSucceed([Sound]) - Not used for demo
+    case loaded([Sound], Set<Sound>)
 
     @CasePathable
     enum Alert: Equatable, Hashable {}
@@ -50,8 +49,13 @@ struct SoundsFeature {
     Reduce { state, action in
       switch action {
       case .onFirstAppear:
-        state.sounds = loadMockData()
-        state.selectedSounds = selectedSoundManager.fetchSounds()
+        return .run { send in
+          await send(.loaded(loadMockData(), selectedSoundManager.fetchSounds()))
+        }
+
+      case .loaded(let sounds, let selectedSounds):
+        state.sounds = sounds
+        state.selectedSounds = selectedSounds
         for sound in state.selectedSounds {
           audioManager.createPlayer(for: sound.audioName)
         }
@@ -81,6 +85,9 @@ struct SoundsFeature {
         selectedSoundManager.remove(sound: sound)
         state.selectedSounds = selectedSoundManager.fetchSounds()
         audioManager.stop(named: sound.audioName)
+        if state.selectedSounds.isEmpty {
+          state.playerState = .paused
+        }
         return .none
 
       case .playPauseButtonTapped:

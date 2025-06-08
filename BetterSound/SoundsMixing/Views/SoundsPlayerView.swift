@@ -2,7 +2,7 @@
 //  SoundsPlayerView.swift
 //  BetterSound
 //
-//  Created by Mark Abou-jaoude on 2025-06-07.
+//  Created by Mark Aboujaoude on 2025-06-07.
 //
 
 import ComposableArchitecture
@@ -63,7 +63,6 @@ struct SoundsPlayerView: View {
         )
       )
       .cornerRadius(16)
-//      .accessibilityElement(children: .ignore)
 //      .accessibilityLabel(accessibility)
 //      .accessibilityAction { onTapPlayPauseAction() }
   }

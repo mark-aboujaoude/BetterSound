@@ -9,7 +9,7 @@ import Testing
 @testable import BetterSound
 
 struct SelectedSoundDataManagerTests {
-  var dataManager = SelectedSoundDataManager()
+  let dataManager = SelectedSoundDataManager()
 
   @Test
   func storeAndFetchSound() {
